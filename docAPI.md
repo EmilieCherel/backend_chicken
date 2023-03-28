@@ -11,21 +11,33 @@ GET /api/chicken/
 Réponse :
 [
 {
-"_id": "64229b0f46d5e195a908580c",
-"name": "Biscotte",
-"birthday": "2022-01-01T00:00:00.000Z",
-"weight": 800,
-"steps": 4,
+"_id": "6422da6cc94687facba5a9da",
+"name": "CotCot",
+"birthday": "2023-01-01T00:00:00.000Z",
+"weight": 1200,
+"steps": 2,
 "isRunning": false,
+"coopId": "6422d953091f39674f59fc8a",
 "__v": 0
 },
 {
-"_id": "64229d69c16a99c3bde047d4",
-"name": "CotCotCot",
-"birthday": "2020-01-01T00:00:00.000Z",
-"weight": 1400,
-"steps": 3,
+"_id": "6422db22c94687facba5a9e6",
+"name": "Craquotte",
+"birthday": "2023-01-01T00:00:00.000Z",
+"weight": 1200,
+"steps": 2,
 "isRunning": false,
+"coopId": "6422d94a091f39674f59fc88",
+"__v": 0
+},
+{
+"_id": "6422db2dc94687facba5a9e9",
+"name": "Biscotte",
+"birthday": "2023-01-01T00:00:00.000Z",
+"weight": 1200,
+"steps": 2,
+"isRunning": false,
+"coopId": "6422d94a091f39674f59fc88",
 "__v": 0
 }
 ]
@@ -36,12 +48,13 @@ GET /api/chicken/:id
 
 Réponse :
 {
-"\_id": "64229b0f46d5e195a908580c",
+"\_id": "6422db2dc94687facba5a9e9",
 "name": "Biscotte",
-"birthday": "2022-01-01T00:00:00.000Z",
-"weight": 800,
-"steps": 4,
+"birthday": "2023-01-01T00:00:00.000Z",
+"weight": 1200,
+"steps": 2,
 "isRunning": false,
+"coopId": "6422d94a091f39674f59fc88",
 "\_\_v": 0
 }
 
@@ -54,7 +67,8 @@ POST /api/chicken/
 "name":"Craquotte",
 "birthday":"2023",
 "weight":"1200",
-"steps":"2"
+"steps":"2",
+"coopId":"6422d94a091f39674f59fc88"
 }
 )
 
@@ -113,4 +127,102 @@ POST /api/chicken/:id/run
 Réponse :
 {
 "message": "Steps augmenté de 1"
+}
+
+### Afficher tous les poulaillers (GET)
+
+GET /api/coop/
+
+Réponse :
+[
+{
+"\_id": "6422d94a091f39674f59fc88",
+"name": "Poulailler1",
+"capacity": 3,
+"chickens": [
+"6422db22c94687facba5a9e6",
+"6422db2dc94687facba5a9e9"
+],
+"**v": 0
+},
+{
+"\_id": "6422d953091f39674f59fc8a",
+"name": "Poulailler2",
+"capacity": 5,
+"chickens": [
+"6422da6cc94687facba5a9da"
+],
+"**v": 0
+}
+]
+
+### Afficher un poulailler (GET)
+
+GET /api/coop/:id
+
+Réponse :
+{
+"\_id": "6422d953091f39674f59fc8a",
+"name": "Poulailler2",
+"capacity": 5,
+"chickens": [
+"6422da6cc94687facba5a9da"
+],
+"\_\_v": 0
+}
+
+### Créer un poulailler (POST)
+
+POST /api/coop/
+
+(dans le body :
+{
+"name":"Poulailler3",
+"capacity":"5",
+}
+)
+
+Réponse :
+{
+"message": "Poulailler enregistré !"
+}
+
+### Modifier un poulailler dans son intégralité (PUT)
+
+PUT /api/coop/:id
+
+(dans le body :
+{
+"name":"Poulailler3",
+"capacity":"5"
+}
+)
+
+Réponse :
+{
+"message": "Poulailler modifié!"
+}
+
+### Modifier un poulailler sur un champ uniquement (PATCH)
+
+PATCH /api/coop/:id
+
+(dans le body :
+{
+"capacity":"6"
+}
+)
+
+Réponse :
+{
+"message": "Poulailler modifié!"
+}
+
+### Supprimer un poulailler (DELETE)
+
+DELETE /api/coop/:id
+
+Réponse :
+{
+"message": "Poulailler supprimé!"
 }
