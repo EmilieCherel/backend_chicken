@@ -26,7 +26,20 @@ exports.createChicken = (req, res, next) => {
       res.status(400).json({ error });
     });
 };
-exports.modifyChicken = (req, res, next) => {};
+exports.modifyChicken = (req, res, next) => {
+  Chicken.updateOne(
+    { _id: req.params.id },
+    {
+      name: req.body.name,
+      birthday: req.body.birthday,
+      weight: req.body.weight,
+      steps: req.body.steps,
+      _id: req.params.id,
+    }
+  )
+    .then(() => res.status(200).json({ message: "Poulet modifié!" }))
+    .catch((error) => res.status(400).json({ error }));
+};
 exports.iDontKnowChicken = (req, res, next) => {};
 exports.deleteChicken = (req, res, next) => {
   Chicken.deleteOne({ _id: req.params.id })
@@ -34,6 +47,6 @@ exports.deleteChicken = (req, res, next) => {
       res.status(200).json({ message: "Poulet supprimé !" });
     })
     .catch((error) => {
-      res.status(401).json({ error });
+      res.status(400).json({ error });
     });
 };
