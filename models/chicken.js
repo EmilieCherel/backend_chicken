@@ -6,6 +6,7 @@ const chickenSchema = mongoose.Schema({
   weight: { type: Number, require: true },
   steps: { type: Number, default: 0 },
   isRunning: { type: Boolean, default: false },
+  coopId: { type: mongoose.Types.ObjectId, ref: "Coop", default: "" },
 });
 
 module.exports = mongoose.model("Chicken", chickenSchema);

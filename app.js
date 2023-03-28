@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 // Enregistrement des routes
 const chickenRoutes = require("./routes/chicken");
+const coopRoutes = require("./routes/coop");
 
 const app = express();
 
@@ -30,5 +31,6 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 app.use("/api/chicken", chickenRoutes);
+app.use("/api/coop", coopRoutes);
 
 module.exports = app;

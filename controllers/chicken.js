@@ -1,4 +1,5 @@
 const Chicken = require("../models/chicken");
+const Coop = require("../models/coop");
 
 exports.getAllChicken = (req, res, next) => {
   Chicken.find()
@@ -16,9 +17,11 @@ exports.createChicken = (req, res, next) => {
     birthday: req.body.birthday,
     weight: req.body.weight,
     steps: req.body.steps,
+    isRunning: req.body.isRunning,
+    coopId: req.body.coopId,
   });
-  chicken
-    .save()
+  chicken.save();
+  Coop.updateMany({ _id: chicken.coopId }, { $push: { chickens: chicken._id } })
     .then(() => {
       res.status(200).json({ message: "Poulet enregistré !" });
     })
@@ -34,6 +37,8 @@ exports.modifyChicken = (req, res, next) => {
       birthday: req.body.birthday,
       weight: req.body.weight,
       steps: req.body.steps,
+      isRunning: req.body.isRunning,
+      coopName: req.body.coopName,
       _id: req.params.id,
     }
   )

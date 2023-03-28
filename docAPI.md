@@ -1,6 +1,6 @@
 # Documentation API Chicken
 
-Il s'agit d'une API CRUD
+Il s'agit d'une API CRUD avec les méthodes GET / POST / PUT / PATCH / DELETE
 
 ## Endpoints
 
@@ -32,7 +32,7 @@ Réponse :
 
 ### Afficher un poulet (GET)
 
-GET /api/chicken/64229b0f46d5e195a908580c
+GET /api/chicken/:id
 
 Réponse :
 {
@@ -65,7 +65,7 @@ Réponse :
 
 ### Modifier un poulet dans son intégralité (PUT)
 
-PUT /api/chicken/64229d69c16a99c3bde047d4
+PUT /api/chicken/:id
 
 (dans le body :
 {
@@ -73,6 +73,7 @@ PUT /api/chicken/64229d69c16a99c3bde047d4
 "birthday":"2021",
 "weight":"1400",
 "steps":"1"
+"isRunning":"true"
 }
 )
 
@@ -83,7 +84,7 @@ Réponse :
 
 ### Modifier un poulet sur un champ uniquement (PATCH)
 
-PATCH /api/chicken/64229d69c16a99c3bde047d4
+PATCH /api/chicken/:id
 
 (dans le body :
 {
@@ -98,7 +99,7 @@ Réponse :
 
 ### Supprimer un poulet (DELETE)
 
-DELETE /api/chicken/64229d69c16a99c3bde047d4
+DELETE /api/chicken/:id
 
 Réponse :
 {
@@ -107,7 +108,7 @@ Réponse :
 
 ### Augmenter la variable Steps de 1 (POST)
 
-POST /api/chicken/64229d69c16a99c3bde047d4/run
+POST /api/chicken/:id/run
 
 Réponse :
 {
