@@ -40,7 +40,11 @@ exports.modifyChicken = (req, res, next) => {
     .then(() => res.status(200).json({ message: "Poulet modifié!" }))
     .catch((error) => res.status(400).json({ error }));
 };
-exports.iDontKnowChicken = (req, res, next) => {};
+exports.runChicken = (req, res, next) => {
+  Chicken.updateOne({ _id: req.params.id }, { $inc: { steps: 1 } })
+    .then(() => res.status(200).json({ message: "Steps augmenté de 1" }))
+    .catch((error) => res.status(400).json({ error }));
+};
 exports.deleteChicken = (req, res, next) => {
   Chicken.deleteOne({ _id: req.params.id })
     .then(() => {
