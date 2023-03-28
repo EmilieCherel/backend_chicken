@@ -1,6 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+// Dotenv pour la variable d'environnement
+const dotenv = require("dotenv");
+dotenv.config();
+
 // Enregistrement des routes
 const chickenRoutes = require("./routes/chicken");
 const coopRoutes = require("./routes/coop");
@@ -10,7 +14,7 @@ const app = express();
 // Connexion à la base de données
 mongoose
   .connect(
-    "mongodb+srv://emiliesadaoui:858H4qbC3PisX1zH@chickencluster.fs1rg2y.mongodb.net/?retryWrites=true&w=majority",
+    `mongodb+srv://${process.env.MONGOOSE_USER}:${process.env.MONGOOSE_PASS}@${process.env.MONGOOSE_CLUSTER}.mongodb.net/?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
