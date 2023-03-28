@@ -28,4 +28,12 @@ exports.createChicken = (req, res, next) => {
 };
 exports.modifyChicken = (req, res, next) => {};
 exports.iDontKnowChicken = (req, res, next) => {};
-exports.deleteChicken = (req, res, next) => {};
+exports.deleteChicken = (req, res, next) => {
+  Chicken.deleteOne({ _id: req.params.id })
+    .then(() => {
+      res.status(200).json({ message: "Poulet supprimé !" });
+    })
+    .catch((error) => {
+      res.status(401).json({ error });
+    });
+};
